@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CascadiaJS 2013 | Cameron Lakenen</title>
+  <meta name="author" content="Cameron Lakenen">
+  
+  <meta name="description" content="I attended CascadiaJS 2013 in Vancouver, BC last week, and wanted to compile some ideas I found interesting and useful from the conference. There were so many amazing talks that I don‘t have time to write about everything, but I’ll try to write a bit about the talks I enjoyed the most. All the sessions were recorded, so go and watch them!">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="CascadiaJS 2013"/>
+  <meta property="og:site_name" content="Cameron Lakenen"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Cameron Lakenen" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20116272-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Cameron Lakenen</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-11-20T06:09:05.000Z"><a href="/2013/11/19/cascadiajs-2013/">Nov 19 2013</a></time>
+      
+      
+  
+    <h1 class="title">CascadiaJS 2013</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I attended <a href="http://2013.cascadiajs.com/" target="_blank">CascadiaJS 2013</a> in Vancouver, BC last week, and wanted to compile some ideas I found interesting and useful from the conference. There were so many amazing talks that I don‘t have time to write about everything, but I’ll try to write a bit about the talks I enjoyed the most. All the sessions were recorded, so <a href="http://2013.cascadiajs.com/videos" target="_blank">go and watch them</a>!</p>
+<a id="more"></a>
+
+<h2>My Favorite Talks</h2>
+<p><strong><a href="https://twitter.com/isntitvacant" target="_blank">Chris Dickinson</a></strong> gave a very interesting <a href="https://github.com/chrisdickinson/cascadiajs-2013" target="_blank">talk</a> on abstract syntax trees. He started by giving the audience a clear understanding of what an AST is, and how it can be used for interesting purposes. Then he walked us through a few of his projects that stemmed from his interest in ASTs. I thought the <a href="https://github.com/chrisdickinson/cssauron" target="_blank">cssauron</a> project was particularly interesting. In the same way CSS selectors allow you to query the DOM (via native CSS or jQuery), cssauron allows you to query any nested object structure, for example: JS AST (through the use of Esprima), JSON, or HTML. With this, Chris was able to build things like <a href="https://github.com/chrisdickinson/jik" target="_blank">JIK</a>, which allows you to use CSS selectors to grep your JS codebase, or, perhaps more practically, <a href="https://github.com/chrisdickinson/jsl" target="_blank">JSL</a> to lint your codebase based on CSS selector rules.</p>
+<p><strong><a href="https://twitter.com/zachbruggeman" target="_blank">Zach Bruggeman</a></strong>&#39;s inspiring <a href="https://speakerdeck.com/remixz/righteous-javascript-dude" target="_blank">talk</a> was about his perspectives on how to get teenagers interested in programming. His perspective is an interesting one, since he is a teenager… who is interested in programming. Zach is a high school student who also works part time as an engineering apprentice at <a href="http://DIY.org" target="_blank">DIY</a>. He brought up a good point about current solutions for getting young people interested in coding: the rolemodels are all successful <em>adults</em>. This is cool and all, but most young people don&#39;t give a shit about successful old people, though they <em>might</em> be more receptive to having successful <em>peers</em> as their rolemodels. He then lead on to talking a bit about JS (it&#39;s a JS conference after all!), and why he thinks JS is a great platform for teaching beginners - especially kids.</p>
+<blockquote>
+<p>The two most important things in teaching someone to code are “zero to hello, world” and “hello, world to whoa”</p>
+</blockquote>
+<p>I definitely agree with his main points: it‘s easy to get setup (all you need is a browser and maybe a text editor), it’s easy to learn (<code>console.log(&#39;hello, world!&#39;)</code>), and it‘s easy to build amazing things (eg., with tools like Canvas/WebGL, WebAudio, WebRTC). I thought Zach hit the nail on the head. I find it truly amazing that someone as young as him can stand and speak at a conference like CascadiaJS and give such a great talk, and I think he’s on the right track to creating more people like himself.</p>
+<p><strong><a href="https://twitter.com/henrikjoreteg" target="_blank">Henrik Joreteg</a></strong> gave a great <a href="https://speakerdeck.com/henrikjoreteg/making-webrtc-awesome-cascadiajs-2013" target="_blank">talk</a> about what exactly WebRTC is, why it&#39;s interesting, and why we should care. He brought up some really interesting points about how Google (hangouts), Apple (facetime), Microsoft (skype), and Facebook (fb messenger) are all becoming the new “telecoms”, but none of them can communicate with each other (ie., they are not <em>federated</em> like normal telecoms). WebRTC, on the other hand, <em>is</em> federated communication, because the spec requires browsers&#39; implementations to be interoperable with other browsers. This puts the web in a <em>very</em> interesting position for the future of realtime communication. It means you can build really amazing things that will work on billions of devices with very little effort. Henrik went on to give examples of some of the various things you can build (and things people <em>have</em> built) with WebRTC. WebRTC is <em>here</em>, and it&#39;s ready for us to hack on.</p>
+<blockquote>
+<p>In less than 5 years WebRTC will be the <strong>#1</strong> way people make voice calls.</p>
+</blockquote>
+<h2>Other Awesome Talks</h2>
+<p>I also really enjoyed the following talks, which I&#39;ll give short summaries of:</p>
+<p><strong><a href="https://twitter.com/supersole" target="_blank">Soledad Penadés</a></strong> gave a fun <a href="https://github.com/sole/cascadiajs2013-slides" target="_blank">talk</a> on <a href="https://github.com/sole/audio-tags" target="_blank">Audio Tags</a> - web components mixed with web audio. She showed some fun demos of oscillators and oscilloscope generated by extremely simple markup!</p>
+<p><strong><a href="https://twitter.com/charlesbihis" target="_blank">Charles Bihis</a></strong> showed us some <a href="http://www.slideshare.net/charlesbihis/javascript-puzzlers-21549109" target="_blank">JS Puzzlers</a> - bits of buggy JS code with explanations of why. Here are some JS quirks that came up:</p>
+<ul>
+<li>the <code>%</code> operator keeps the sign of the left operand (eg., <code>-9 % 2 === -1</code>)</li>
+<li><code>2^53</code> is the largest integer value representable by Number in JS (because numbers are represented using the IEEE 754 floating point spec)</li>
+<li>floating point arithmetic can be innacurate when representing fractions (eg., <code>0.8 - 0.6 !== 0.2</code>)</li>
+</ul>
+<p><strong><a href="https://twitter.com/tomdale" target="_blank">Tom Dale</a></strong> told us to <em>Stop Breaking the Web</em> by breaking URLs or building web apps that don&#39;t properly use them.</p>
+<blockquote>
+<p>If you‘re building apps that don’t use URLs, then you&#39;re just using the web as a distribution platform</p>
+</blockquote>
+<p><strong><a href="https://twitter.com/b1tr0t" target="_blank">Peter McLachlan</a></strong> shared some really useful findings from his RUM testing of mobile performance:</p>
+<ul>
+<li>mobile latency is a big problem that&#39;s not going away</li>
+<li>key optimization: use “just enough” connections and good values for connection timeouts</li>
+<li>use &lt; 400 bytes of cookies to prevent header spanning multiple packets</li>
+<li>domain sharding is no longer an optimization, and will soon be an anti-pattern</li>
+</ul>
+<p><strong><a href="https://twitter.com/jlongster" target="_blank">James Long</a></strong> gave a really cool talk on the performance benefits of using asm.js, either as a compile target from C/C++ with <a href="https://github.com/kripken/emscripten" target="_blank">emscripten</a> or by writing <a href="https://github.com/jlongster/lljs" target="_blank">LLJS</a>.</p>
+<p>There were so many more awesome talks at the conference, and I thought all the talks were amazing, but these ones were particularly interesting to me.</p>
+<p>Aside from the great talks, the conference itself was extremely well organized and well executed, and the people were amazing. I loved the addition of the Hacker Olympics on Thursday night and the after party (featuring <a href="https://chat.meatspac.es" target="_blank">chat.meatspac.es</a> on the projector at the bar) on Friday. I made some really great friends, and now I can&#39;t wait for CascadiaJS 2014!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/javascript/">javascript</a>, <a href="/tags/node.js/">node.js</a>, <a href="/tags/conferences/">conferences</a>, <a href="/tags/cascadiajs/">cascadiajs</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:lakenen.com/">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/11/19/cascadiajs-2013/">CascadiaJS 2013</a>
+      </li>
+    
+      <li>
+        <a href="/2013/07/05/node-mans-land/">Node Man's Land</a>
+      </li>
+    
+      <li>
+        <a href="/2013/03/26/3d-ifying-documents-using-css-transforms/">3D-ifying Documents Using CSS Transforms</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">Find Me</h3>
+  <ul class="entry">
+    <li>
+      <a class="github-link icon-link"
+        target="_blank"
+        href="https://github.com/camupod"
+        title="Github"></a>
+      <a class="twitter-link icon-link"
+        target="_blank"
+        href="https://twitter.com/lakenen"
+        title="Twitter"></a>
+      <a class="stackoverflow-link icon-link"
+        target="_blank"
+        href="http://stackoverflow.com/users/494954"
+        title="StackOverflow"></a>
+    </li>
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tags</h3>
+  <div class="entry">
+    <a href="/tags/3d/" style="font-size: 10.00px;">3d</a><a href="/tags/cascadiajs/" style="font-size: 10.00px;">cascadiajs</a><a href="/tags/conferences/" style="font-size: 15.00px;">conferences</a><a href="/tags/crocodoc/" style="font-size: 10.00px;">crocodoc</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/experiments/" style="font-size: 10.00px;">experiments</a><a href="/tags/html/" style="font-size: 10.00px;">html</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/node.js/" style="font-size: 15.00px;">node.js</a><a href="/tags/nodeconf/" style="font-size: 10.00px;">nodeconf</a><a href="/tags/svg/" style="font-size: 10.00px;">svg</a>
+  </div>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Cameron Lakenen
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'lakenen';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

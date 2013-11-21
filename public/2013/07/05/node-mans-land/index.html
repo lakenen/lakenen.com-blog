@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node Man's Land | Cameron Lakenen</title>
+  <meta name="author" content="Cameron Lakenen">
+  
+  <meta name="description" content="I went to NodeConf last week, and I wanted to share what I learned! This post is basically a brain dump of what I remember from each session and my overall impression of the conference.
+But first, a little about the structure of NodeConf. When we arrived, everyone received a map of the camp and a randomly chosen, unique schedule of times with numbers that correspond to locations on the map. The idea was that for each time slot, you’d go to the session indicated by the number on your schedule. In each session, there were about 30 attendees and 2-3 presenters. The sessions were very interactive; almost all of them included coding workshops of some sort. Each session only lasted 50-55 minutes, but considering the amount of information covered, I found them amazingly rewarding and useful.
+Read more about the format of NodeConf on the github repo.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Node Man's Land"/>
+  <meta property="og:site_name" content="Cameron Lakenen"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Cameron Lakenen" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20116272-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Cameron Lakenen</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-05T16:00:00.000Z"><a href="/2013/07/05/node-mans-land/">Jul 5 2013</a></time>
+      
+      
+  
+    <h1 class="title">Node Man's Land</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I went to NodeConf last week, and I wanted to share what I learned! This post is basically a brain dump of what I remember from each session and my overall impression of the conference.</p>
+<p>But first, a little about the structure of NodeConf. When we arrived, everyone received a <a href="http://i.imgur.com/GRoK0hw.png" target="_blank">map of the camp</a> and a randomly chosen, unique <a href="http://i.imgur.com/28Ar19l.jpg" target="_blank">schedule</a> of times with numbers that correspond to locations on the map. The idea was that for each time slot, you’d go to the session indicated by the number on your schedule. In each session, there were about 30 attendees and 2-3 presenters. The sessions were very interactive; almost all of them included coding workshops of some sort. Each session only lasted 50-55 minutes, but considering the amount of information covered, I found them amazingly rewarding and useful.</p>
+<p>Read more about the format of NodeConf on the <a href="https://github.com/mikeal/nodeconf2013#format" target="_blank">github repo</a>.</p>
+<p><a id="more"></a></p>
+<h2>Sessions</h2>
+<p><br/><br><strong>Contributing to Node Core</strong> (<a href="https://twitter.com/izs" target="_blank">@izs</a>, <a href="https://twitter.com/piscisaureus" target="_blank">@piscisaureus</a>)</p>
+<p>In this session, Isaac explained that you don’t have to be a superstar C++ or low level OS developer to contribute to node. He went over how to write good tests and a very brief overview of node’s structure. We also learned how to add methods to core node modules using C++ bindings and how to expose them in JS.</p>
+<p>My <a href="https://github.com/camupod/node/commit/41d028b2bc7184af10de5ae3087dfc311e99e068" target="_blank">commit</a> from the workshop:</p>
+<ul>
+<li>added simple hello world C++ binding to net module, including a simple test case (see: lib/net.js, test/simple/test-net-hello-world.js, src/tcp_wrap.cc, src/tcp_wrap.h)</li>
+<li>added json method (with pretty print) to responses in http module (see: lib/_http_outgoing.js)</li>
+</ul>
+<p><em>Takeaway: it’s super easy to contribute to node core! Do it!</em></p>
+<p><br/><br><strong>Web Services</strong> (<a href="https://twitter.com/eranhammer" target="_blank">@eranhammer</a>, <a href="https://twitter.com/mcantelon" target="_blank">@mcantelon</a>)</p>
+<p>From what I gathered, the web services talk seemed basically like a comparison of hapi.js and express.js, two popular node web frameworks. It started out with a brief overview of web services in node, then continued on about how to use express and hapi and the differences between them. There was not too much of an interactive portion to this talk, though we were provided some data and code samples to play around with on our own time.</p>
+<p><em>Takeaway: express offers a very general framework with a lot of 3rd party middleware available, where hapi is more opinionated and offers more built in stuff. Basic node can do web, but frameworks are more powerful.</em></p>
+<p><br/><br><strong>Stream Adventure!</strong> (<a href="https://twitter.com/substack" target="_blank">@substack</a>, <a href="https://twitter.com/maxogden" target="_blank">@maxogden</a>)</p>
+<p>In the streams session, we played* an awesome <a href="https://npmjs.org/package/stream-adventure" target="_blank">stream-adventure</a> game* created by <a href="https://twitter.com/substack" target="_blank">@substack</a>, which taught us a ton about how streams work, various use cases, and different modules that work really well with and implement streams. You should play* it! This was one of my favorite sessions.</p>
+<p><sup>*term used loosely</sup></p>
+<p><em>Takeaway: streams are awesome and we should use them for everything always.</em></p>
+<p><br/><br><strong>Distributed Chat</strong> (<a href="https://twitter.com/Raynos" target="_blank">@raynos</a>, <a href="https://twitter.com/dominictarr" target="_blank">@dominictarr</a>)</p>
+<p>In this session, we built a distributed chat system where every client is also a server. We incrementally added functionality throughout the session (you can find the steps here: <a href="https://github.com/Raynos/distributed" target="_blank"><a href="https://github.com/Raynos/distributed">https://github.com/Raynos/distributed</a></a>). The session was awesome, but went very fast, so it was a little hard to follow. If you find this topic interesting, you should also check out Dominic Tarr’s <a href="https://github.com/dominictarr/scuttlebutt" target="_blank">scuttlebutt</a> module.</p>
+<p><em>Takeaway: holy crap, this is cool!</em></p>
+<p><br/><br><strong>Domains</strong> (<a href="https://twitter.com/domenic" target="_blank">@domenic</a>, <a href="https://twitter.com/othiym23" target="_blank">@othiym23</a>)</p>
+<p>In the domains session, we implemented domains for various types of (crashy) servers. If I understood everything correctly, this is how we used domains:</p>
+<ul>
+<li>a simple http server that crashes at various endpoints, which are each wrapped in a domain</li>
+<li>domainified express middleware that uses the default error handler where the domain runs at the beginning of middleware chain, which basically wraps all requests in a domain</li>
+<li>domains are created explicitly in each route, then middleware (to be placed at the end of the middleware chain) is used as a wrapper around the express error handler, which emits errors to the active domain if it exists</li>
+<li>proof of work server with domains… this one kinda lost me ¯\<em>(ツ)</em>/¯</li>
+</ul>
+<p>There was a bit about domain.intercept() as well, which is used to reduce boilerplate error passing in callbacks. One <em>very </em>important thing to note about domains: <a href="http://nodejs.org/api/domain.html#domain_warning_don_t_ignore_errors" target="_blank">don’t ignore errors</a>. Errors can leave the process in an undefined state, so it’s better to use domains to capture the error for the users’ benefit (eg. send a useful error message or do a graceful shutdown), and then restart the app.</p>
+<p><em>Takeaway: domains are like try/catch that works in async environments and we should use them… carefully.</em></p>
+<p><br/><br><strong>Node Bots</strong> (<a href="https://twitter.com/rwaldron" target="_blank">@rwaldron</a>, <a href="https://twitter.com/rockbot" target="_blank">@rockbot</a>, <a href="https://twitter.com/tmpvar" target="_blank">@tmpvar</a>)</p>
+<p>This session was basically like: “here is a bunch of awesome robot hardware… go build something.” I built a… ravebot? It was basically a multi-color LED that pulsed various colors at different intervals. <em>Cut me some slack, it was dark in the room, and I don’t know how to breadboard! </em>Man I could have so much fun with this stuff. I have an Arduino from JSConf… time to go shopping for parts!</p>
+<p><em>Takeaway: you can use node to (really, ridiculously easily) control an Arduino!</em></p>
+<p><br/><br><strong>Node Copters</strong> (<a href="https://twitter.com/nexxylove" target="_blank">@nexxylove</a>, <a href="https://twitter.com/s5fs" target="_blank">@s5fs</a>)</p>
+<p>The node copters session was very similar to the node bots session: make it do something cool. I attempted to build a browser-based controller and realtime video feed with web sockets, but didn’t have enough time (it looks like at least one person beat me to it anyways: <a href="https://github.com/functino/drone-browser" target="_blank"><a href="https://github.com/functino/drone-browser">https://github.com/functino/drone-browser</a></a>). I’m going to explore this a little more with the two AR Drones we have from the Crocodoc office.</p>
+<p>Side note: <a href="https://twitter.com/jonmarkgo" target="_blank">@jonmarkgo</a> and <a href="https://twitter.com/SwiftAlphaOne" target="_blank">@swiftalphaone</a> were somehow able to create a tool that takes over all drones in wifi range. It was amazing, and you should watch it right now: <a href="https://www.dropbox.com/s/onsiqfxk8n12qvv/dronevirus.MOV" target="_blank"><a href="https://www.dropbox.com/s/onsiqfxk8n12qvv/dronevirus.MOV">https://www.dropbox.com/s/onsiqfxk8n12qvv/dronevirus.MOV</a></a>.</p>
+<p><em>Takeaway: what’s next, node boats?</em></p>
+<p><br/><br><strong>DTracing Node</strong> (<a href="https://twitter.com/mrbruning" target="_blank">@mrbruning</a>)</p>
+<p>In this session we learned about using DTrace with your node apps. DTrace is a dynamic tracing framework intended to be used in (and not interfere with) production environments. We connected to a SmartOS VM and ran DTrace against various running apps. The session was a bit over my head and complicated, but I think it could be very useful when debugging performance issues in production node apps.</p>
+<p><em>Takeaway: you can’t use it on linux…</em></p>
+<h2>Materials</h2>
+<p>If you want to download the session materials and try stuff out, here’s the instructions:</p>
+<ol>
+<li>install the latest stable (0.10.x) release of node.js from <a href="http://www.nodejs.org/" target="_blank">http://www.nodejs.org/</a></li>
+<li>npm install nodeconf2013</li>
+<li>login to GitHub and fork <a href="https://github.com/joyent/node" target="_blank">https://github.com/joyent/node</a> and follow the instructions to clone it locally</li>
+<li>verify that you can build node locally by running  ./configure &amp;&amp; make</li>
+</ol>
+<p>Hopefully some of this will be useful to someone. Please feel free to contact me with questions, but I definitely encourage you to contact the presenters directly–they are very helpful!</p>
+<h2>Everything Else</h2>
+<p>Aside from an amazing lineup of presenters, there was a lot of other things about NodeConf that made it a very special experience. The remote and beautiful location, Walker Creek Ranch in Marin County, CA was the perfect place for a bunch of developers to get together for a few days and geek out. I stayed in a bunkhouse with several other developers, ate great food (not the mediocre camp food I remember from summer camp as a child), went hiking in the hills and swimming in the pond, and enjoyed great craft beer, music, star gazing, and conversation with the other campers in the evenings. After the evening annoucements and presentations, we even got to hear some amazing original songs by Paul Campbell (<a href="http://vimeo.com/69667425" target="_blank"><a href="http://vimeo.com/69667425">http://vimeo.com/69667425</a></a>).</p>
+<p>I loved the fact that I didn’t know what session I was going to next and how small and interactive the sessions were. The structure of the sessions made it easier to socialize and collaborate, offering everyone a chance to come out of their cabins and tents.</p>
+<p>Overall, I really enjoyed the conference, and I hope other conferences follow NodeConf’s lead. I think I learned more, coded more, met more awesome people, and had more fun at NodeConf than any other conference I’ve been to in the past. Huge thanks to <a href="https://twitter.com/mikeal" target="_blank">@mikeal</a> for putting on such an amazing conference!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/node.js/">node.js</a>, <a href="/tags/javascript/">javascript</a>, <a href="/tags/conferences/">conferences</a>, <a href="/tags/nodeconf/">nodeconf</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:lakenen.com/">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/11/19/cascadiajs-2013/">CascadiaJS 2013</a>
+      </li>
+    
+      <li>
+        <a href="/2013/07/05/node-mans-land/">Node Man's Land</a>
+      </li>
+    
+      <li>
+        <a href="/2013/03/26/3d-ifying-documents-using-css-transforms/">3D-ifying Documents Using CSS Transforms</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">Find Me</h3>
+  <ul class="entry">
+    <li>
+      <a class="github-link icon-link"
+        target="_blank"
+        href="https://github.com/camupod"
+        title="Github"></a>
+      <a class="twitter-link icon-link"
+        target="_blank"
+        href="https://twitter.com/lakenen"
+        title="Twitter"></a>
+      <a class="stackoverflow-link icon-link"
+        target="_blank"
+        href="http://stackoverflow.com/users/494954"
+        title="StackOverflow"></a>
+    </li>
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tags</h3>
+  <div class="entry">
+    <a href="/tags/3d/" style="font-size: 10.00px;">3d</a><a href="/tags/cascadiajs/" style="font-size: 10.00px;">cascadiajs</a><a href="/tags/conferences/" style="font-size: 15.00px;">conferences</a><a href="/tags/crocodoc/" style="font-size: 10.00px;">crocodoc</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/experiments/" style="font-size: 10.00px;">experiments</a><a href="/tags/html/" style="font-size: 10.00px;">html</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/node.js/" style="font-size: 15.00px;">node.js</a><a href="/tags/nodeconf/" style="font-size: 10.00px;">nodeconf</a><a href="/tags/svg/" style="font-size: 10.00px;">svg</a>
+  </div>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Cameron Lakenen
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'lakenen';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
