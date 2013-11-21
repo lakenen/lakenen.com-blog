@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Cameron Lakenen]]></title>
+  <link href="http://lakenen.com/blog/atom.xml" rel="self"/>
+  <link href="http://lakenen.com/blog"/>
+  <updated>2013-11-21T18:55:30.543Z</updated>
+  <id>http://lakenen.com/blog/</id>
+  <author>
+    <name><![CDATA[Cameron Lakenen]]></name>
+    <email><![CDATA[cameron@lakenen.com]]></email>
+  </author>
+  <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[CascadiaJS 2013]]></title>
+    <link href="http://lakenen.com/blog/2013/11/19/cascadiajs-2013/"/>
+    <id>http://lakenen.com/blog/2013/11/19/cascadiajs-2013/</id>
+    <published>2013-11-20T06:09:05.000Z</published>
+    <updated>2013-11-21T18:30:53.000Z</updated>
+    <content type="html"><![CDATA[<p>I attended <a href="http://2013.cascadiajs.com/" target="_blank">CascadiaJS 2013</a> in Vancouver, BC last week, and wanted to compile some ideas I found interesting and useful from the conference. There were so many amazing talks that I don‘t have time to write about everything, but I’ll try to write a bit about the talks I enjoyed the most. All the sessions were recorded, so <a href="http://2013.cascadiajs.com/videos" target="_blank">go and watch them</a>!</p>
+<a id="more"></a>
+
+<h2>My Favorite Talks</h2>
+<p><strong><a href="https://twitter.com/isntitvacant" target="_blank">Chris Dickinson</a></strong> gave a very interesting <a href="https://github.com/chrisdickinson/cascadiajs-2013" target="_blank">talk</a> on abstract syntax trees. He started by giving the audience a clear understanding of what an AST is, and how it can be used for interesting purposes. Then he walked us through a few of his projects that stemmed from his interest in ASTs. I thought the <a href="https://github.com/chrisdickinson/cssauron" target="_blank">cssauron</a> project was particularly interesting. In the same way CSS selectors allow you to query the DOM (via native CSS or jQuery), cssauron allows you to query any nested object structure, for example: JS AST (through the use of Esprima), JSON, or HTML. With this, Chris was able to build things like <a href="https://github.com/chrisdickinson/jik" target="_blank">JIK</a>, which allows you to use CSS selectors to grep your JS codebase, or, perhaps more practically, <a href="https://github.com/chrisdickinson/jsl" target="_blank">JSL</a> to lint your codebase based on CSS selector rules.</p>
+<p><strong><a href="https://twitter.com/zachbruggeman" target="_blank">Zach Bruggeman</a></strong>&#39;s inspiring <a href="https://speakerdeck.com/remixz/righteous-javascript-dude" target="_blank">talk</a> was about his perspectives on how to get teenagers interested in programming. His perspective is an interesting one, since he is a teenager… who is interested in programming. Zach is a high school student who also works part time as an engineering apprentice at <a href="http://DIY.org" target="_blank">DIY</a>. He brought up a good point about current solutions for getting young people interested in coding: the rolemodels are all successful <em>adults</em>. This is cool and all, but most young people don&#39;t give a shit about successful old people, though they <em>might</em> be more receptive to having successful <em>peers</em> as their rolemodels. He then lead on to talking a bit about JS (it&#39;s a JS conference after all!), and why he thinks JS is a great platform for teaching beginners - especially kids.</p>
+<blockquote>
+<p>The two most important things in teaching someone to code are “zero to hello, world” and “hello, world to whoa”</p>
+</blockquote>
+<p>I definitely agree with his main points: it‘s easy to get setup (all you need is a browser and maybe a text editor), it’s easy to learn (<code>console.log(&#39;hello, world!&#39;)</code>), and it‘s easy to build amazing things (eg., with tools like Canvas/WebGL, WebAudio, WebRTC). I thought Zach hit the nail on the head. I find it truly amazing that someone as young as him can stand and speak at a conference like CascadiaJS and give such a great talk, and I think he’s on the right track to creating more people like himself.</p>
+<p><strong><a href="https://twitter.com/henrikjoreteg" target="_blank">Henrik Joreteg</a></strong> gave a great <a href="https://speakerdeck.com/henrikjoreteg/making-webrtc-awesome-cascadiajs-2013" target="_blank">talk</a> about what exactly WebRTC is, why it&#39;s interesting, and why we should care. He brought up some really interesting points about how Google (hangouts), Apple (facetime), Microsoft (skype), and Facebook (fb messenger) are all becoming the new “telecoms”, but none of them can communicate with each other (ie., they are not <em>federated</em> like normal telecoms). WebRTC, on the other hand, <em>is</em> federated communication, because the spec requires browsers&#39; implementations to be interoperable with other browsers. This puts the web in a <em>very</em> interesting position for the future of realtime communication. It means you can build really amazing things that will work on billions of devices with very little effort. Henrik went on to give examples of some of the various things you can build (and things people <em>have</em> built) with WebRTC. WebRTC is <em>here</em>, and it&#39;s ready for us to hack on.</p>
+<blockquote>
+<p>In less than 5 years WebRTC will be the <strong>#1</strong> way people make voice calls.</p>
+</blockquote>
+<h2>Other Awesome Talks</h2>
+<p>I also really enjoyed the following talks, which I&#39;ll give short summaries of:</p>
+<p><strong><a href="https://twitter.com/supersole" target="_blank">Soledad Penadés</a></strong> gave a fun <a href="https://github.com/sole/cascadiajs2013-slides" target="_blank">talk</a> on <a href="https://github.com/sole/audio-tags" target="_blank">Audio Tags</a> - web components mixed with web audio. She showed some fun demos of oscillators and oscilloscope generated by extremely simple markup!</p>
+<p><strong><a href="https://twitter.com/charlesbihis" target="_blank">Charles Bihis</a></strong> showed us some <a href="http://www.slideshare.net/charlesbihis/javascript-puzzlers-21549109" target="_blank">JS Puzzlers</a> - bits of buggy JS code with explanations of why. Here are some JS quirks that came up:</p>
+<ul>
+<li>the <code>%</code> operator keeps the sign of the left operand (eg., <code>-9 % 2 === -1</code>)</li>
+<li><code>2^53</code> is the largest integer value representable by Number in JS (because numbers are represented using the IEEE 754 floating point spec)</li>
+<li>floating point arithmetic can be innacurate when representing fractions (eg., <code>0.8 - 0.6 !== 0.2</code>)</li>
+</ul>
+<p><strong><a href="https://twitter.com/tomdale" target="_blank">Tom Dale</a></strong> told us to <em>Stop Breaking the Web</em> by breaking URLs or building web apps that don&#39;t properly use them.</p>
+<blockquote>
+<p>If you‘re building apps that don’t use URLs, then you&#39;re just using the web as a distribution platform</p>
+</blockquote>
+<p><strong><a href="https://twitter.com/b1tr0t" target="_blank">Peter McLachlan</a></strong> shared some really useful findings from his RUM testing of mobile performance:</p>
+<ul>
+<li>mobile latency is a big problem that&#39;s not going away</li>
+<li>key optimization: use “just enough” connections and good values for connection timeouts</li>
+<li>use &lt; 400 bytes of cookies to prevent header spanning multiple packets</li>
+<li>domain sharding is no longer an optimization, and will soon be an anti-pattern</li>
+</ul>
+<p><strong><a href="https://twitter.com/jlongster" target="_blank">James Long</a></strong> gave a really cool talk on the performance benefits of using asm.js, either as a compile target from C/C++ with <a href="https://github.com/kripken/emscripten" target="_blank">emscripten</a> or by writing <a href="https://github.com/jlongster/lljs" target="_blank">LLJS</a>.</p>
+<p>There were so many more awesome talks at the conference, and I thought all the talks were amazing, but these ones were particularly interesting to me.</p>
+<p>Aside from the great talks, the conference itself was extremely well organized and well executed, and the people were amazing. I loved the addition of the Hacker Olympics on Thursday night and the after party (featuring <a href="https://chat.meatspac.es" target="_blank">chat.meatspac.es</a> on the projector at the bar) on Friday. I made some really great friends, and now I can&#39;t wait for CascadiaJS 2014!</p>
+]]></content>
+    <category scheme="http://lakenen.com/blog/tags/javascript/" term="javascript"/>
+    <category scheme="http://lakenen.com/blog/tags/node.js/" term="node.js"/>
+    <category scheme="http://lakenen.com/blog/tags/conferences/" term="conferences"/>
+    <category scheme="http://lakenen.com/blog/tags/cascadiajs/" term="cascadiajs"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[Node Man's Land]]></title>
+    <link href="http://lakenen.com/blog/2013/07/05/node-mans-land/"/>
+    <id>http://lakenen.com/blog/2013/07/05/node-mans-land/</id>
+    <published>2013-07-05T16:00:00.000Z</published>
+    <updated>2013-11-21T18:32:02.000Z</updated>
+    <content type="html"><![CDATA[<p>I went to NodeConf last week, and I wanted to share what I learned! This post is basically a brain dump of what I remember from each session and my overall impression of the conference.</p>
+<p>But first, a little about the structure of NodeConf. When we arrived, everyone received a <a href="http://i.imgur.com/GRoK0hw.png" target="_blank">map of the camp</a> and a randomly chosen, unique <a href="http://i.imgur.com/28Ar19l.jpg" target="_blank">schedule</a> of times with numbers that correspond to locations on the map. The idea was that for each time slot, you’d go to the session indicated by the number on your schedule. In each session, there were about 30 attendees and 2-3 presenters. The sessions were very interactive; almost all of them included coding workshops of some sort. Each session only lasted 50-55 minutes, but considering the amount of information covered, I found them amazingly rewarding and useful.</p>
+<p>Read more about the format of NodeConf on the <a href="https://github.com/mikeal/nodeconf2013#format" target="_blank">github repo</a>.</p>
+<p><a id="more"></a></p>
+<h2>Sessions</h2>
+<p><br/><br><strong>Contributing to Node Core</strong> (<a href="https://twitter.com/izs" target="_blank">@izs</a>, <a href="https://twitter.com/piscisaureus" target="_blank">@piscisaureus</a>)</p>
+<p>In this session, Isaac explained that you don’t have to be a superstar C++ or low level OS developer to contribute to node. He went over how to write good tests and a very brief overview of node’s structure. We also learned how to add methods to core node modules using C++ bindings and how to expose them in JS.</p>
+<p>My <a href="https://github.com/camupod/node/commit/41d028b2bc7184af10de5ae3087dfc311e99e068" target="_blank">commit</a> from the workshop:</p>
+<ul>
+<li>added simple hello world C++ binding to net module, including a simple test case (see: lib/net.js, test/simple/test-net-hello-world.js, src/tcp_wrap.cc, src/tcp_wrap.h)</li>
+<li>added json method (with pretty print) to responses in http module (see: lib/_http_outgoing.js)</li>
+</ul>
+<p><em>Takeaway: it’s super easy to contribute to node core! Do it!</em></p>
+<p><br/><br><strong>Web Services</strong> (<a href="https://twitter.com/eranhammer" target="_blank">@eranhammer</a>, <a href="https://twitter.com/mcantelon" target="_blank">@mcantelon</a>)</p>
+<p>From what I gathered, the web services talk seemed basically like a comparison of hapi.js and express.js, two popular node web frameworks. It started out with a brief overview of web services in node, then continued on about how to use express and hapi and the differences between them. There was not too much of an interactive portion to this talk, though we were provided some data and code samples to play around with on our own time.</p>
+<p><em>Takeaway: express offers a very general framework with a lot of 3rd party middleware available, where hapi is more opinionated and offers more built in stuff. Basic node can do web, but frameworks are more powerful.</em></p>
+<p><br/><br><strong>Stream Adventure!</strong> (<a href="https://twitter.com/substack" target="_blank">@substack</a>, <a href="https://twitter.com/maxogden" target="_blank">@maxogden</a>)</p>
+<p>In the streams session, we played* an awesome <a href="https://npmjs.org/package/stream-adventure" target="_blank">stream-adventure</a> game* created by <a href="https://twitter.com/substack" target="_blank">@substack</a>, which taught us a ton about how streams work, various use cases, and different modules that work really well with and implement streams. You should play* it! This was one of my favorite sessions.</p>
+<p><sup>*term used loosely</sup></p>
+<p><em>Takeaway: streams are awesome and we should use them for everything always.</em></p>
+<p><br/><br><strong>Distributed Chat</strong> (<a href="https://twitter.com/Raynos" target="_blank">@raynos</a>, <a href="https://twitter.com/dominictarr" target="_blank">@dominictarr</a>)</p>
+<p>In this session, we built a distributed chat system where every client is also a server. We incrementally added functionality throughout the session (you can find the steps here: <a href="https://github.com/Raynos/distributed" target="_blank"><a href="https://github.com/Raynos/distributed">https://github.com/Raynos/distributed</a></a>). The session was awesome, but went very fast, so it was a little hard to follow. If you find this topic interesting, you should also check out Dominic Tarr’s <a href="https://github.com/dominictarr/scuttlebutt" target="_blank">scuttlebutt</a> module.</p>
+<p><em>Takeaway: holy crap, this is cool!</em></p>
+<p><br/><br><strong>Domains</strong> (<a href="https://twitter.com/domenic" target="_blank">@domenic</a>, <a href="https://twitter.com/othiym23" target="_blank">@othiym23</a>)</p>
+<p>In the domains session, we implemented domains for various types of (crashy) servers. If I understood everything correctly, this is how we used domains:</p>
+<ul>
+<li>a simple http server that crashes at various endpoints, which are each wrapped in a domain</li>
+<li>domainified express middleware that uses the default error handler where the domain runs at the beginning of middleware chain, which basically wraps all requests in a domain</li>
+<li>domains are created explicitly in each route, then middleware (to be placed at the end of the middleware chain) is used as a wrapper around the express error handler, which emits errors to the active domain if it exists</li>
+<li>proof of work server with domains… this one kinda lost me ¯\<em>(ツ)</em>/¯</li>
+</ul>
+<p>There was a bit about domain.intercept() as well, which is used to reduce boilerplate error passing in callbacks. One <em>very </em>important thing to note about domains: <a href="http://nodejs.org/api/domain.html#domain_warning_don_t_ignore_errors" target="_blank">don’t ignore errors</a>. Errors can leave the process in an undefined state, so it’s better to use domains to capture the error for the users’ benefit (eg. send a useful error message or do a graceful shutdown), and then restart the app.</p>
+<p><em>Takeaway: domains are like try/catch that works in async environments and we should use them… carefully.</em></p>
+<p><br/><br><strong>Node Bots</strong> (<a href="https://twitter.com/rwaldron" target="_blank">@rwaldron</a>, <a href="https://twitter.com/rockbot" target="_blank">@rockbot</a>, <a href="https://twitter.com/tmpvar" target="_blank">@tmpvar</a>)</p>
+<p>This session was basically like: “here is a bunch of awesome robot hardware… go build something.” I built a… ravebot? It was basically a multi-color LED that pulsed various colors at different intervals. <em>Cut me some slack, it was dark in the room, and I don’t know how to breadboard! </em>Man I could have so much fun with this stuff. I have an Arduino from JSConf… time to go shopping for parts!</p>
+<p><em>Takeaway: you can use node to (really, ridiculously easily) control an Arduino!</em></p>
+<p><br/><br><strong>Node Copters</strong> (<a href="https://twitter.com/nexxylove" target="_blank">@nexxylove</a>, <a href="https://twitter.com/s5fs" target="_blank">@s5fs</a>)</p>
+<p>The node copters session was very similar to the node bots session: make it do something cool. I attempted to build a browser-based controller and realtime video feed with web sockets, but didn’t have enough time (it looks like at least one person beat me to it anyways: <a href="https://github.com/functino/drone-browser" target="_blank"><a href="https://github.com/functino/drone-browser">https://github.com/functino/drone-browser</a></a>). I’m going to explore this a little more with the two AR Drones we have from the Crocodoc office.</p>
+<p>Side note: <a href="https://twitter.com/jonmarkgo" target="_blank">@jonmarkgo</a> and <a href="https://twitter.com/SwiftAlphaOne" target="_blank">@swiftalphaone</a> were somehow able to create a tool that takes over all drones in wifi range. It was amazing, and you should watch it right now: <a href="https://www.dropbox.com/s/onsiqfxk8n12qvv/dronevirus.MOV" target="_blank"><a href="https://www.dropbox.com/s/onsiqfxk8n12qvv/dronevirus.MOV">https://www.dropbox.com/s/onsiqfxk8n12qvv/dronevirus.MOV</a></a>.</p>
+<p><em>Takeaway: what’s next, node boats?</em></p>
+<p><br/><br><strong>DTracing Node</strong> (<a href="https://twitter.com/mrbruning" target="_blank">@mrbruning</a>)</p>
+<p>In this session we learned about using DTrace with your node apps. DTrace is a dynamic tracing framework intended to be used in (and not interfere with) production environments. We connected to a SmartOS VM and ran DTrace against various running apps. The session was a bit over my head and complicated, but I think it could be very useful when debugging performance issues in production node apps.</p>
+<p><em>Takeaway: you can’t use it on linux…</em></p>
+<h2>Materials</h2>
+<p>If you want to download the session materials and try stuff out, here’s the instructions:</p>
+<ol>
+<li>install the latest stable (0.10.x) release of node.js from <a href="http://www.nodejs.org/" target="_blank">http://www.nodejs.org/</a></li>
+<li>npm install nodeconf2013</li>
+<li>login to GitHub and fork <a href="https://github.com/joyent/node" target="_blank">https://github.com/joyent/node</a> and follow the instructions to clone it locally</li>
+<li>verify that you can build node locally by running  ./configure &amp;&amp; make</li>
+</ol>
+<p>Hopefully some of this will be useful to someone. Please feel free to contact me with questions, but I definitely encourage you to contact the presenters directly–they are very helpful!</p>
+<h2>Everything Else</h2>
+<p>Aside from an amazing lineup of presenters, there was a lot of other things about NodeConf that made it a very special experience. The remote and beautiful location, Walker Creek Ranch in Marin County, CA was the perfect place for a bunch of developers to get together for a few days and geek out. I stayed in a bunkhouse with several other developers, ate great food (not the mediocre camp food I remember from summer camp as a child), went hiking in the hills and swimming in the pond, and enjoyed great craft beer, music, star gazing, and conversation with the other campers in the evenings. After the evening annoucements and presentations, we even got to hear some amazing original songs by Paul Campbell (<a href="http://vimeo.com/69667425" target="_blank"><a href="http://vimeo.com/69667425">http://vimeo.com/69667425</a></a>).</p>
+<p>I loved the fact that I didn’t know what session I was going to next and how small and interactive the sessions were. The structure of the sessions made it easier to socialize and collaborate, offering everyone a chance to come out of their cabins and tents.</p>
+<p>Overall, I really enjoyed the conference, and I hope other conferences follow NodeConf’s lead. I think I learned more, coded more, met more awesome people, and had more fun at NodeConf than any other conference I’ve been to in the past. Huge thanks to <a href="https://twitter.com/mikeal" target="_blank">@mikeal</a> for putting on such an amazing conference!</p>
+]]></content>
+    <category scheme="http://lakenen.com/blog/tags/node.js/" term="node.js"/>
+    <category scheme="http://lakenen.com/blog/tags/javascript/" term="javascript"/>
+    <category scheme="http://lakenen.com/blog/tags/conferences/" term="conferences"/>
+    <category scheme="http://lakenen.com/blog/tags/nodeconf/" term="nodeconf"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[3D-ifying Documents Using CSS Transforms]]></title>
+    <link href="http://lakenen.com/blog/2013/03/26/3d-ifying-documents-using-css-transforms/"/>
+    <id>http://lakenen.com/blog/2013/03/26/3d-ifying-documents-using-css-transforms/</id>
+    <published>2013-03-26T22:31:00.000Z</published>
+    <updated>2013-11-21T18:31:59.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>This article was originally posted on the <a href="http://blog.crocodoc.com/post/46369766700/3d-ifying-documents-using-css-transforms" target="_blank">Crocodoc blog</a>. I am reposting here for persistence.</strong></p>
+<p>We recently launched a preview of Crocodoc’s newest document to HTML converter. If you haven’t checked it out yet, go play with our <a href="http://preview.crocodoc.com/" target="_blank">preview</a> and see how we’re converting the pages of your documents to embeddable SVG and HTML.</p>
+<p>What does the new converter mean to those of you building web applications using Crocodoc? Simple: your documents will load faster, look sharper, and be much easier to customize. Our preview page is full of interactive examples designed to help provide inspiration and showcase what is possible with the new Crocodoc: everything from a 3D page demo, showing off the many layers in a document, to a magnified view of an uploaded document, and a thumbnail that expands into a full-size inline document.</p>
+<p>For this post, I’d like to focus on the 3D demo. I’ll explain how it was built, the various issues we ran into, and the workarounds we used to fix them.</p>
+<p><a id="more"></a><br><em>Note: the demos in this blog post require IE 9+ (preferably 10), Firefox, or any WebKit browser. If you’re on a mobile device, you might need to click the open in new page button to view the demos properly.</em></p>
+<h2>Building the 3D Demo</h2>
+<p>The Crocodoc 3D Demo separates a document into discrete layers, which you can rotate so that you can see how the document is constructed. Not only does it look pretty cool, but it gives some insight into the processing Crocodoc is doing on each document that we convert to HTML.</p>
+<p>For the purposes of this blog post, I broke the demo down into three steps: building a basic proof of concept (without SVG), getting it to work in our target browsers, and finally, adding the SVG layers.</p>
+<p><em>Just want to play with some code? Fork the <a href="https://github.com/crocodoc/3d-demo" target="_blank">3d-demo repo</a>!</em></p>
+<p><strong>Step One: Proof of Concept</strong></p>
+<p>When starting the Preview project, the first step was to create a proof-of-concept for the 3D demo. The project needed to work on the target browsers (IE 9+, Firefox, WebKit, and most mobile browsers). I have worked with CSS 3D transforms in the past, but not to the extent that this project required, so it was time to do a bit of research! The WebKitCSSMatrix class that I discovered seemed like a good place to start. Fortunately, the proof-of-concept demo was actually quite simple to build using the WebKitCSSMatrix class. Let’s take a look at some code!</p>
+<p><strong><em>The Page</em></strong></p>
+<p>The Page class inserts layer divs into a jQuery-wrapped container element, and exposes a rotate(dx, dy, dz) method, which rotates the page in 3D space. Each layer div is positioned LAYER_SPACING apart on the z axis. From here, it’s easy to take it a step further, and add mouse/touch controls for rotating the page.</p>
+<h5><a href="http://lakenen.com/blog-demos/demo1.html">Demo #1: The Page</a></h5>
+<p><p><iframe class="demo" src="http://lakenen.com/blog-demos/demo1.html"></iframe></p></p>
+<script src="https://gist.github.com/5251877.js"></script>
+
+
+
+<p><strong><em>Adding Transitions</em></strong></p>
+<p>In browsers that support CSS transitions, adding transitions is very simple, and done almost entirely in CSS. The JavaScript changes are mainly adding and removing CSS classes. We can also add a nice implode/explode effect.</p>
+<h5><a href="http://lakenen.com/blog-demos/demo2.html">Demo #2: Transitions</a></h5>
+<p><p><iframe class="demo" src="http://lakenen.com/blog-demos/demo2.html"></iframe></p></p>
+<script src="https://gist.github.com/5251958.js"></script>
+
+
+
+<p><strong>Step Two: Browser Support</strong></p>
+<p>Awesome, we have a working, nice-looking proof-of-concept! Now, how do we get it to work on all browsers? It turns out, currently the only two implementations of W3C CSSMatrix interface (<a href="http://dev.w3.org/csswg/css3-2d-transforms/#cssmatrix-interface" target="_blank">2D</a> and <a href="http://dev.w3.org/csswg/css3-3d-transforms/#cssmatrix-interface" target="_blank">3D</a>) are <a href="http://developer.apple.com/library/safari/#documentation/AudioVideo/Reference/WebKitCSSMatrixClassReference/WebKitCSSMatrix/WebKitCSSMatrix.html" title="WebKitCSSMatrix Class Reference" target="_blank">WebKitCSSMatrix</a> (supported by at least Chrome, Safari, iOS, and Android) and <a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh453593.aspx" title="MSCSSMatrix Class Reference" target="_blank">MSCSSMatrix</a> (IE 10 only). What now? Some googling lead me to a <a href="https://github.com/arian/CSSMatrix" target="_blank">CSSMatrix shim</a>, which looked promising, so I gave it a go. Unfortunately, the shim was actually broken when I found it, but hey–a chance to contribute to a useful open-source project? Sign me up! Long story short, after several hours of poring through <a href="http://en.wikipedia.org/wiki/Rotation_matrix" target="_blank">Wikipedia articles</a> and even the <a href="http://www.opensource.apple.com/source/WebCore/WebCore-514/platform/graphics/transforms/TransformationMatrix.cpp" target="_blank">WebKit source</a>, I finally got it working properly (for a browser-ready version to play with, check out the <a href="https://github.com/camupod/CSSMatrix/tree/browserified" target="_blank">browserified branch</a> and add CSSMatrix.js to your page).</p>
+<h5>CSSMatrix Example</h5>
+<script src="https://gist.github.com/5257218.js"></script>
+
+
+
+<p>With Firefox support handled, it’s time to tackle IE 9. Even though IE 9 can’t render matrix3d values in CSS, we can compute them in JavaScript and truncate a few numbers… which is exactly what we did. And it looks way better than you might expect! Check out the demo below to compare how it looks in IE 9 (which we’ll call affine mode) vs proper 3D mode.</p>
+<h5><a href="http://lakenen.com/blog-demos/demo3.html">Demo #3: Affine Mode</a></h5>
+<p><p><iframe class="demo" src="http://lakenen.com/blog-demos/demo3.html"></iframe></p><br><em>(NOTE: can’t tell the difference between the two modes? you’re probably using IE 9. No? It’s also possible that hardware acceleration is disabled on your machine, which you can check in <strong>chrome://gpu/.</strong>)</em></p>
+<script src="https://gist.github.com/5252004.js"></script>
+
+
+
+<p>IE 9 also doesn’t support CSS transitions, but I’m not going to go into detail about how we did that, because there are already a lot of jQuery plugins out there that make it pretty seamless. (Here are a few places to start: <a href="https://github.com/louisremi/jquery.transition.js" target="_blank">jQuery.transition.js</a>, <a href="https://github.com/benbarnett/jQuery-Animate-Enhanced" target="_blank">jQuery-Animate-Enhanced</a>.)</p>
+<p>Now that the demo works well in all the browsers we’re targeting, we can just throw in the SVG file and we’re done! Right? Well, not exactly.</p>
+<p><strong>Step Three: Make it Work with SVG</strong></p>
+<p>After a bit of (failed) experimenting, I realized that, out of the box, SVG does not support CSS transforms with perspective. My solution was to load the SVG with AJAX (really CORS from AWS S3, which required yet <a href="https://gist.github.com/camupod/5252086" target="_blank">another IE shim</a>, and a cache-related hack for Chrome), fix linked assets (Crocodoc SVG links to assets relatively), apply a filter to split the SVG into several distinct SVG objects, and embed each object using HTML5 Inline SVG in a separate div elements. Voila, we have our layers!</p>
+<h5><a href="http://lakenen.com/blog-demos/demo4.html">Demo #4: SVG Layers</a></h5>
+<p><p><iframe class="demo" src="http://lakenen.com/blog-demos/demo4.html"></iframe></p></p>
+<script src="https://gist.github.com/5252136.js"></script>
+
+
+
+<p>Since the SVG is now contained in HTML elements, we can apply CSS 3D transforms to the containers, and everything works swimmingly. Except in IE 9. Yep, IE 9 supports inline SVG, but it doesn’t support document.importNode(), which is necessary for creating the inline SVG in the first place. I found a <a href="http://stackoverflow.com/a/9883539/494954" target="_blank">nice shim</a>, which I <a href="https://gist.github.com/camupod/5165619#file-importnode-js" target="_blank">modified slightly</a>, because it was producing <a href="http://stackoverflow.com/questions/14593520/ie9-importing-inline-svg-image-elements-broken" target="_blank">some issues</a> with namespaced attributes.</p>
+<p>If you’re interested, also check out demos <a href="http://lakenen.com/blog-demos/demo5.html">5</a>, <a href="http://lakenen.com/blog-demos/demo6.html">6</a>, and <a href="http://lakenen.com/blog-demos/demo7.html">7</a> (warning, you might need a fast machine).</p>
+<p><em>Note: I also ran into some very troubling issues with Firefox.  Rotating the 3D demo would reproducibly cause a kernel panic on my MBP (Retina, Mid 2012). I unfortunately haven’t been able to create a reduced test case for this, but I’ll be sure to post about it when I do. It has something to do with applying 3D transforms to elements (possibly specifically SVG) in a overflow:hidden container.</em></p>
+<h2>Wrap Up</h2>
+<p>It’s true that SVG is still in its infancy in HTML, but I think our preview page alone proves that it’s already possible to do some incredible stuff. I hope this post inspires some great applications built on the new Crocodoc.</p>
+<p>In my next post, I’ll explain the other demos on our preview page, as well as a few other issues we ran into.</p>
+]]></content>
+    <category scheme="http://lakenen.com/blog/tags/css/" term="css"/>
+    <category scheme="http://lakenen.com/blog/tags/3d/" term="3d"/>
+    <category scheme="http://lakenen.com/blog/tags/crocodoc/" term="crocodoc"/>
+    <category scheme="http://lakenen.com/blog/tags/javascript/" term="javascript"/>
+    <category scheme="http://lakenen.com/blog/tags/svg/" term="svg"/>
+    <category scheme="http://lakenen.com/blog/tags/html/" term="html"/>
+    <category scheme="http://lakenen.com/blog/tags/experiments/" term="experiments"/>
+  </entry>
+</feed>

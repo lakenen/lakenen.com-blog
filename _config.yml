@@ -71,7 +71,7 @@ pagination_dir: page
 # Disqus
 disqus_shortname: lakenen
 twitter_user: lakenen
-github_user: lakenen
+github_user: camupod
 stackoverflow_user_id: 494954
 
 # Extensions
@@ -79,6 +79,9 @@ stackoverflow_user_id: 494954
 ## Themes: https://github.com/tommy351/hexo/wiki/Themes
 theme: light
 exclude_generator:
+
+plugins:
+- hexo-generator-feed
 
 # Deployment
 ## Docs: http://zespia.tw/hexo/docs/deploy.html

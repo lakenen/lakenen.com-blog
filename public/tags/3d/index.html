@@ -25,13 +25,13 @@
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-20116272-1']);
   _gaq.push(['_trackPageview']);
-
-  (function() {
+  window.addEventListener('load', function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+  });
 </script>
+
 
 </head>
 
@@ -45,6 +45,8 @@
   <ul>
     
       <li><a href="/blog">Home</a></li>
+    
+      <li><a href="/blog/about">About</a></li>
     
       <li><a href="/blog/archives">Archives</a></li>
     
@@ -96,6 +98,7 @@
 </article>
 
 
+
   
 
   <nav id="pagination">
@@ -139,7 +142,7 @@
     <li>
       <a class="github-link icon-link"
         target="_blank"
-        href="https://github.com/lakenen"
+        href="https://github.com/camupod"
         title="Github"></a>
       <a class="twitter-link icon-link"
         target="_blank"
@@ -172,32 +175,21 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/blog/js/jquery.imagesloaded.min.js"></script>
-<script src="/blog/js/gallery.js"></script>
-
-
+  
 <script type="text/javascript">
 var disqus_shortname = 'lakenen';
 
-(function(){
+window.addEventListener('load', function(){
   var dsq = document.createElement('script');
   dsq.type = 'text/javascript';
   dsq.async = true;
   dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+});
 </script>
 
 
 
-<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
 </body>
 </html>

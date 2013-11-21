@@ -1,6 +1,5 @@
 title: "3D-ifying Documents Using CSS Transforms"
 date: 2013-03-26 15:31:00
-share: true
 tags: [css, 3d, crocodoc, javascript, svg, html, experiments]
 ---
 

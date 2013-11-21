@@ -1,6 +1,5 @@
 title: "Node Man's Land"
 date: 2013-07-05 09:00
-share: true
 tags: [node.js, javascript, conferences, nodeconf]
 ---
 
