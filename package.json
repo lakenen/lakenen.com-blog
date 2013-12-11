@@ -1,9 +1,13 @@
 {
-  "name": "hexo",
+  "name": "lakenen-blog",
   "version": "2.3.0",
   "private": true,
   "dependencies": {
+    "hexo": "2.3.0",
     "hexo-renderer-sass": "0.0.3",
     "hexo-generator-feed": "0.0.10"
+  },
+  "scripts": {
+    "generate": "node_modules/hexo/bin/hexo generate"
   }
 }
