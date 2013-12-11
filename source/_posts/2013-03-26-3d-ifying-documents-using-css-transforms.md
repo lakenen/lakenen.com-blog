@@ -32,8 +32,8 @@ When starting the Preview project, the first step was to create a proof-of-conce
 
 The Page class inserts layer divs into a jQuery-wrapped container element, and exposes a rotate(dx, dy, dz) method, which rotates the page in 3D space. Each layer div is positioned LAYER\_SPACING apart on the z axis. From here, it’s easy to take it a step further, and add mouse/touch controls for rotating the page.
 
-##### [Demo \#1: The Page](http://lakenen.com/blog-demos/demo1.html)
-<p><iframe class="demo" src="http://lakenen.com/blog-demos/demo1.html"></iframe></p>
+##### [Demo \#1: The Page](https://lakenen.com/blog-demos/demo1.html)
+<p><iframe class="demo" src="https://lakenen.com/blog-demos/demo1.html"></iframe></p>
 {% gist 5251877 %}
    
 
@@ -41,14 +41,14 @@ The Page class inserts layer divs into a jQuery-wrapped container element, and e
 
 In browsers that support CSS transitions, adding transitions is very simple, and done almost entirely in CSS. The JavaScript changes are mainly adding and removing CSS classes. We can also add a nice implode/explode effect.
 
-##### [Demo \#2: Transitions](http://lakenen.com/blog-demos/demo2.html)
-<p><iframe class="demo" src="http://lakenen.com/blog-demos/demo2.html"></iframe></p>
+##### [Demo \#2: Transitions](https://lakenen.com/blog-demos/demo2.html)
+<p><iframe class="demo" src="https://lakenen.com/blog-demos/demo2.html"></iframe></p>
 {% gist 5251958 %}
   
 
 **Step Two: Browser Support**
 
-Awesome, we have a working, nice-looking proof-of-concept! Now, how do we get it to work on all browsers? It turns out, currently the only two implementations of W3C CSSMatrix interface ([2D](http://dev.w3.org/csswg/css3-2d-transforms/#cssmatrix-interface) and [3D](http://dev.w3.org/csswg/css3-3d-transforms/#cssmatrix-interface)) are [WebKitCSSMatrix](http://developer.apple.com/library/safari/#documentation/AudioVideo/Reference/WebKitCSSMatrixClassReference/WebKitCSSMatrix/WebKitCSSMatrix.html "WebKitCSSMatrix Class Reference") (supported by at least Chrome, Safari, iOS, and Android) and [MSCSSMatrix](http://msdn.microsoft.com/en-us/library/windows/apps/hh453593.aspx "MSCSSMatrix Class Reference") (IE 10 only). What now? Some googling lead me to a [CSSMatrix shim](https://github.com/arian/CSSMatrix), which looked promising, so I gave it a go. Unfortunately, the shim was actually broken when I found it, but hey–a chance to contribute to a useful open-source project? Sign me up! Long story short, after several hours of poring through [Wikipedia articles](http://en.wikipedia.org/wiki/Rotation_matrix) and even the [WebKit source](http://www.opensource.apple.com/source/WebCore/WebCore-514/platform/graphics/transforms/TransformationMatrix.cpp), I finally got it working properly (for a browser-ready version to play with, check out the [browserified branch](https://github.com/camupod/CSSMatrix/tree/browserified) and add CSSMatrix.js to your page).
+Awesome, we have a working, nice-looking proof-of-concept! Now, how do we get it to work on all browsers? It turns out, currently the only two implementations of W3C CSSMatrix interface ([2D](http://dev.w3.org/csswg/css3-2d-transforms/#cssmatrix-interface) and [3D](http://dev.w3.org/csswg/css3-3d-transforms/#cssmatrix-interface)) are [WebKitCSSMatrix](http://developer.apple.com/library/safari/#documentation/AudioVideo/Reference/WebKitCSSMatrixClassReference/WebKitCSSMatrix/WebKitCSSMatrix.html "WebKitCSSMatrix Class Reference") (supported by at least Chrome, Safari, iOS, and Android) and [MSCSSMatrix](http://msdn.microsoft.com/en-us/library/windows/apps/hh453593.aspx "MSCSSMatrix Class Reference") (IE 10 only). What now? Some googling lead me to a [CSSMatrix shim](https://github.com/arian/CSSMatrix), which looked promising, so I gave it a go. Unfortunately, the shim was actually broken when I found it, but hey–a chance to contribute to a useful open-source project? Sign me up! Long story short, after several hours of poring through [Wikipedia articles](http://en.wikipedia.org/wiki/Rotation_matrix) and even the [WebKit source](http://www.opensource.apple.com/source/WebCore/WebCore-514/platform/graphics/transforms/TransformationMatrix.cpp), I finally got it working properly (for a browser-ready version to play with, check out the [browserified branch](https://github.com/lakenen/CSSMatrix/tree/browserified) and add CSSMatrix.js to your page).
 
 ##### CSSMatrix Example
 {% gist 5257218 %}
@@ -56,9 +56,9 @@ Awesome, we have a working, nice-looking proof-of-concept! Now, how do we get it
 
 With Firefox support handled, it’s time to tackle IE 9. Even though IE 9 can’t render matrix3d values in CSS, we can compute them in JavaScript and truncate a few numbers… which is exactly what we did. And it looks way better than you might expect! Check out the demo below to compare how it looks in IE 9 (which we’ll call affine mode) vs proper 3D mode.
 
-##### [Demo \#3: Affine Mode](http://lakenen.com/blog-demos/demo3.html)
+##### [Demo \#3: Affine Mode](https://lakenen.com/blog-demos/demo3.html)
 
-<p><iframe class="demo" src="http://lakenen.com/blog-demos/demo3.html"></iframe></p>
+<p><iframe class="demo" src="https://lakenen.com/blog-demos/demo3.html"></iframe></p>
 *(NOTE: can’t tell the difference between the two modes? you’re probably using IE 9. No? It’s also possible that hardware acceleration is disabled on your machine, which you can check in **chrome://gpu/.**)*
 {% gist 5252004 %}
    
@@ -70,16 +70,16 @@ Now that the demo works well in all the browsers we’re targeting, we can just 
 
 **Step Three: Make it Work with SVG**
 
-After a bit of (failed) experimenting, I realized that, out of the box, SVG does not support CSS transforms with perspective. My solution was to load the SVG with AJAX (really CORS from AWS S3, which required yet [another IE shim](https://gist.github.com/camupod/5252086), and a cache-related hack for Chrome), fix linked assets (Crocodoc SVG links to assets relatively), apply a filter to split the SVG into several distinct SVG objects, and embed each object using HTML5 Inline SVG in a separate div elements. Voila, we have our layers!
+After a bit of (failed) experimenting, I realized that, out of the box, SVG does not support CSS transforms with perspective. My solution was to load the SVG with AJAX (really CORS from AWS S3, which required yet [another IE shim](https://gist.github.com/lakenen/5252086), and a cache-related hack for Chrome), fix linked assets (Crocodoc SVG links to assets relatively), apply a filter to split the SVG into several distinct SVG objects, and embed each object using HTML5 Inline SVG in a separate div elements. Voila, we have our layers!
 
-##### [Demo \#4: SVG Layers](http://lakenen.com/blog-demos/demo4.html)
-<p><iframe class="demo" src="http://lakenen.com/blog-demos/demo4.html"></iframe></p>
+##### [Demo \#4: SVG Layers](https://lakenen.com/blog-demos/demo4.html)
+<p><iframe class="demo" src="https://lakenen.com/blog-demos/demo4.html"></iframe></p>
 {% gist 5252136 %}
    
 
-Since the SVG is now contained in HTML elements, we can apply CSS 3D transforms to the containers, and everything works swimmingly. Except in IE 9. Yep, IE 9 supports inline SVG, but it doesn’t support document.importNode(), which is necessary for creating the inline SVG in the first place. I found a [nice shim](http://stackoverflow.com/a/9883539/494954), which I [modified slightly](https://gist.github.com/camupod/5165619#file-importnode-js), because it was producing [some issues](http://stackoverflow.com/questions/14593520/ie9-importing-inline-svg-image-elements-broken) with namespaced attributes.
+Since the SVG is now contained in HTML elements, we can apply CSS 3D transforms to the containers, and everything works swimmingly. Except in IE 9. Yep, IE 9 supports inline SVG, but it doesn’t support document.importNode(), which is necessary for creating the inline SVG in the first place. I found a [nice shim](http://stackoverflow.com/a/9883539/494954), which I [modified slightly](https://gist.github.com/lakenen/5165619#file-importnode-js), because it was producing [some issues](http://stackoverflow.com/questions/14593520/ie9-importing-inline-svg-image-elements-broken) with namespaced attributes.
 
-If you’re interested, also check out demos [5](http://lakenen.com/blog-demos/demo5.html), [6](http://lakenen.com/blog-demos/demo6.html), and [7](http://lakenen.com/blog-demos/demo7.html) (warning, you might need a fast machine).
+If you’re interested, also check out demos [5](https://lakenen.com/blog-demos/demo5.html), [6](https://lakenen.com/blog-demos/demo6.html), and [7](https://lakenen.com/blog-demos/demo7.html) (warning, you might need a fast machine).
 
 *Note: I also ran into some very troubling issues with Firefox.  Rotating the 3D demo would reproducibly cause a kernel panic on my MBP (Retina, Mid 2012). I unfortunately haven’t been able to create a reduced test case for this, but I’ll be sure to post about it when I do. It has something to do with applying 3D transforms to elements (possibly specifically SVG) in a overflow:hidden container.*
    
