@@ -5,7 +5,8 @@
   "dependencies": {
     "hexo": "2.3.0",
     "hexo-renderer-sass": "0.0.3",
-    "hexo-generator-feed": "0.0.10"
+    "hexo-generator-feed": "0.0.10",
+    "hexo-processor-static": "0.0.1"
   },
   "scripts": {
     "generate": "node_modules/hexo/bin/hexo generate"

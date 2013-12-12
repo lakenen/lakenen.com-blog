@@ -1,0 +1,267 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="CSSMatrix.js"></script>
+<style>
+@import url(//fonts.googleapis.com/css?family=Open+Sans:600);
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0; padding: 0;
+    overflow: hidden;
+    background-color: #282828;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+.page {
+    margin: -150px auto;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    perspective: 1000px;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.page-layer {
+    width: 100%;
+    height: 100%;
+    position:absolute; top:0; left:0;
+    color: transparent;
+    font-size: 65px;
+    line-height: 300px;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.page-transitions .page-layer {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.page-layer:first-child, .page-layer:last-child, .page-exploded .page-layer {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(180,180,180,0.2);
+    color: rgba(255,255,255,0.25);
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.25);
+}
+
+.page-layer:first-child, .page-layer:last-child {
+    background: rgba(60, 60, 60, 0.7);
+}
+</style>
+</head>
+<body>
+<div class="page"></div>
+<script type="text/javascript">
+    var WEBKIT = /webkit/i.test(navigator.userAgent);
+    var FF = /firefox/i.test(navigator.userAgent);
+    var Matrix = window.WebKitCSSMatrix || window.MSCSSMatrix || CSSMatrix;
+    var FORCE_AFFINE = /MSIE\s+9/i.test(navigator.userAgent),
+        NUM_LAYERS = 101,
+        LAYER_SPACING = 3;
+
+    function toAffineString(m) {
+        var fix6 = function (val) { return val.toFixed(6); };
+        return  'matrix(' + [
+                m.a, m.b,
+                m.c, m.d,
+                m.e, m.f
+            ].map(fix6).join(', ') + ')';
+    }
+
+    function Page($el) {
+        var self = this,
+            $layers,
+            exploded = false,
+            // current state of rotation, relative to original position (0,0,0)
+            rotation = { x: 0, y: 0, z: 0 },
+            // identity matrix, used to update rotationMatrix with a new rotation state
+            identityMatrix = new Matrix(),
+            // current rotation matrix to be applied to the layers
+            rotationMatrix = new Matrix();
+
+        var createLayers,
+            updateLayers,
+            applyTransform;
+
+        self.enableTransitions = function () {
+            $el.addClass('page-transitions');
+        };
+
+        self.disableTransitions = function () {
+            $el.removeClass('page-transitions');
+        };
+
+        self.toggleExploded = function () {
+            exploded = !exploded;
+            if (exploded) $el.addClass('page-exploded');
+            else $el.removeClass('page-exploded');
+            updateLayers();
+        };
+
+        self.rotate = function (dx, dy, dz) {
+            rotation.x += dx || 0;
+            rotation.y += dy || 0;
+            rotation.z += dz || 0;
+            rotation.x = rotation.x % 360;
+            rotation.y = rotation.y % 360;
+            rotation.z = rotation.z % 360;
+            rotationMatrix = identityMatrix.rotate(rotation.x, rotation.y, rotation.z);
+            updateLayers();
+        };
+
+        createLayers = function () {
+            var i, x, y, layers = '';
+            var w = $el.width();
+            var h = $el.height();
+            var style = '';
+            var r = Math.floor(NUM_LAYERS / 2) - 10;
+            var canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            var ctx = canvas.getContext('2d');
+            var clearCircle = function(radius) {
+                var x = w/2, y = h/2;
+                ctx.save();
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+                ctx.fill();
+                ctx.restore();
+            };
+            for (i = 0; i < NUM_LAYERS; ++i) {
+                x = Math.max(-r, i - r - 10);
+                y = Math.sqrt(r*r - x*x) || 0;
+                if (WEBKIT) {
+                    ctx.fillRect(0,0,w,h);
+                    clearCircle(y*Math.PI);
+                    style = '-webkit-mask-image: url('+canvas.toDataURL()+');'
+                } else if (FF) {
+                    var clip = '<svg xmlns="http://www.w3.org/2000/svg"><mask id="clip'+i+'"><rect x="0" y="0" width="300" height="300" fill="white"/><circle cx="150" cy="150" r="'+y*Math.PI+'" fill="black"/></mask></svg>';
+                    $('body').append(clip);
+                    style =  'mask: url(#clip'+i+')';
+                }
+                layers += '<div class="page-layer" style="'+style+'">crocodoc</div>';
+            }
+            $layers = $(layers);
+            $el.html($layers);
+        };
+
+        updateLayers = function () {
+            var flipped = (Math.abs(rotation.x) > 90 && Math.abs(rotation.x) < 270) ||
+                          (Math.abs(rotation.y) > 90 && Math.abs(rotation.y) < 270);
+            $.each($layers, function (i) {
+                var $layer = $(this);
+                if (FORCE_AFFINE) {
+                    if (flipped) $layer.css('z-index', $layers.length - i);
+                    else $layer.css('z-index', i);
+                }
+                applyTransform($layer);
+            });
+        };
+
+        applyTransform = function ($layer) {
+            var z = exploded ? $layer.index() * LAYER_SPACING : 0;
+            var matrix = rotationMatrix.translate(0, 0, z);
+            $layer.css('transform', FORCE_AFFINE ? toAffineString(matrix) : matrix.toString());
+        };
+
+        createLayers();
+        updateLayers();
+    }
+
+    var page = new Page($('.page'));
+    page.enableTransitions();
+    $(document).one('mousemove', function () {
+        page.rotate(-10, 30);
+        setTimeout(function () {
+            page.toggleExploded();
+        }, 500);
+    });
+
+
+    var mousedown = function (ev) {
+        var last = getCoord(ev);
+        var mousemove = function (ev) {
+            var mouse = getCoord(ev);
+                dx = mouse.x - last.x,
+                dy = mouse.y - last.y;
+            last = mouse;
+            // note: x and y mean different things in mouse coords, vs rotation axes
+            page.rotate(-dy / 2, dx / 2);
+            ev.preventDefault();
+            return false;
+        };
+        var mouseup = function (ev) {
+            $(document.body).off('mousemove touchmove MSPointerMove', mousemove)
+                .off('mouseup touchend MSPointerUp mouseleave', mouseup);
+            page.enableTransitions();
+            ev.preventDefault();
+            return false;
+        };
+
+        page.disableTransitions();
+        $(document.body).on('mousemove touchmove MSPointerMove', mousemove)
+            .on('mouseup touchend MSPointerUp mouseleave', mouseup);
+        ev.preventDefault();
+        return false;
+    };
+
+    $(document.body).on('mousedown touchstart MSPointerDown', mousedown);
+    $('.transition-btn').on('click touchstart', function (ev) {
+        transition();
+        return false;
+    });
+    $('.explode-btn').on('click touchstart', function (ev) {
+        page.toggleExploded();
+        return false;
+    });
+
+    function getCoord(ev, $el) {
+        ev = ev.originalEvent || ev;
+        var offset = $el ? $el.offset() : { left: 0, top: 0 },
+            x = ev.touches && ev.touches[0].pageX ||
+                ev.pageX ||
+                ev.clientX + document.body.scrollLeft + document.documentElement.scrollLeft,
+            y = ev.touches && ev.touches[0].pageY ||
+                ev.pageY ||
+                ev.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        return {
+            x: x - offset.left,
+            y: y - offset.top
+        };
+    }
+</script>
+
+
+<style>
+.open {
+    background: url(open_in_new_window.png) 0 0 no-repeat;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    display: block;
+    top: 4px;
+    right: 4px;
+    opacity: 0.2;
+    z-index: 99999;
+}
+.open:hover {
+    opacity: 1;
+}
+</style>
+<a class="open" href="" target="_blank" style="display: none" title="Open demo in a new tab"></a>
+<script type="text/javascript"> if (window.self !== window.top) { $('.open').show(); }</script>
+
+</body>
+</html>
+

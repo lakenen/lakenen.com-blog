@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="CSSMatrix.js"></script>
+<style>
+@import url(//fonts.googleapis.com/css?family=Open+Sans:600);
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0; padding: 0;
+    overflow: hidden;
+    background-color: #282828;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+h1 {
+    font-size: 24px;
+}
+.wrapper {
+    display: inline-block;
+    text-align: center;
+    color: #777;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.25);
+    width: 280px;
+}
+.page {
+    margin: 100px auto;
+    width: 180px;
+    height: 216px;
+    -webkit-perspective: 2500px;
+    -moz-perspective: 2500px;
+    perspective: 2500px;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.page-layer {
+    width: 100%;
+    height: 100%;
+    position:absolute; top:0; left:0;
+    color: transparent;
+    font-size: 75px;
+    line-height: 150px;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.page-transitions .page-layer {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.page-layer:first-child, .page-exploded .page-layer {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(180,180,180,0.2);
+    color: rgba(255,255,255,0.25);
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.25);
+}
+
+.page-layer:first-child {
+    background: rgba(60, 60, 60,0.9);
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+    <h1>2d (Affine) Mode</h1>
+    <div class="page page-affine"></div>
+</div>
+<div class="wrapper">
+    <h1>3d Mode</h1>
+    <div class="page page-3d"></div>
+</div>
+<script type="text/javascript">
+    var Matrix = window.WebKitCSSMatrix || window.MSCSSMatrix || CSSMatrix;
+    var FORCE_AFFINE = /MSIE\s+9/i.test(navigator.userAgent),
+        NUM_LAYERS = 5,
+        LAYER_SPACING = 45;
+
+    // CSSMatrix.toString will return the full 3d string if any 3d transforms have been applied.
+    // This function is used to generate the matrix(a,b,c,d,e,f) string for affine mode
+    function toAffineString(m) {
+        var fix6 = function (val) { return val.toFixed(6); };
+        return  'matrix(' + [
+                m.a, m.b,
+                m.c, m.d,
+                m.e, m.f
+            ].map(fix6).join(', ') + ')';
+    }
+
+    function Page($el, AFFINE) {
+        var self = this,
+            $layers,
+            affine = AFFINE || FORCE_AFFINE,
+            exploded = false,
+            // current state of rotation, relative to original position (0,0,0)
+            rotation = { x: 0, y: 0, z: 0 },
+            // identity matrix, used to update rotationMatrix with a new rotation state
+            identityMatrix = new Matrix(),
+            // current rotation matrix to be applied to the layers
+            rotationMatrix = new Matrix();
+
+        var createLayers,
+            updateLayers,
+            applyTransform;
+
+        self.enableTransitions = function () {
+            $el.addClass('page-transitions');
+        };
+
+        self.disableTransitions = function () {
+            $el.removeClass('page-transitions');
+        };
+
+        self.toggleExploded = function () {
+            exploded = !exploded;
+            if (exploded) $el.addClass('page-exploded');
+            else $el.removeClass('page-exploded');
+            updateLayers();
+        };
+
+        self.rotate = function (dx, dy, dz) {
+            rotation.x += dx || 0;
+            rotation.y += dy || 0;
+            rotation.z += dz || 0;
+            rotation.x = rotation.x % 360;
+            rotation.y = rotation.y % 360;
+            rotation.z = rotation.z % 360;
+            rotationMatrix = identityMatrix.rotate(rotation.x, rotation.y, rotation.z);
+            updateLayers();
+        };
+
+        createLayers = function () {
+            var i, layers = '';
+            for (i = 0; i < NUM_LAYERS; ++i)
+                layers += '<div class="page-layer">'+(i+1)+'</div>';
+            $layers = $(layers);
+            $el.html($layers);
+        };
+
+        updateLayers = function () {
+            // hack for chrome on mac...
+            if (affine) $el.css('transform', 'translateZ('+(Math.random()*0.001)+'px)')
+            var flipped = (Math.abs(rotation.x) > 90 && Math.abs(rotation.x) < 270) ||
+                          (Math.abs(rotation.y) > 90 && Math.abs(rotation.y) < 270);
+            $.each($layers, function (i) {
+                var $layer = $(this);
+                if (affine) {
+                    // if the affine mode is flipped backwards, make sure the z-index is correct
+                    if (flipped) $layer.css('z-index', $layers.length - i);
+                    else $layer.css('z-index', i);
+                }
+                applyTransform($layer);
+            });
+        };
+
+        applyTransform = function ($layer) {
+            var z = exploded ? $layer.index() * LAYER_SPACING : 0;
+            var matrix = rotationMatrix.translate(0, 0, z);
+            $layer.css('transform', affine ? toAffineString(matrix) : matrix.toString());
+        };
+
+        createLayers();
+        updateLayers();
+    }
+
+    var pageAffine = new Page($('.page-affine'), true);
+    pageAffine.enableTransitions();
+    pageAffine.toggleExploded();
+    pageAffine.rotate(10, 25);
+
+    var page3d = new Page($('.page-3d'));
+    page3d.enableTransitions();
+    page3d.toggleExploded();
+    page3d.rotate(10, 25);
+
+    // boilerplate click-and-drag...
+    var mousedown = function (ev) {
+        var last = getCoord(ev);
+        var mousemove = function (ev) {
+            var mouse = getCoord(ev);
+                dx = mouse.x - last.x,
+                dy = mouse.y - last.y;
+            last = mouse;
+            // note: x and y mean different things in mouse coords, vs rotation axes
+            pageAffine.rotate(-dy / 2, dx / 2);
+            page3d.rotate(-dy / 2, dx / 2);
+            ev.preventDefault();
+            return false;
+        };
+        var mouseup = function (ev) {
+            $(document.body).off('mousemove touchmove MSPointerMove', mousemove)
+                .off('mouseup touchend MSPointerUp mouseleave', mouseup);
+            pageAffine.enableTransitions();
+            page3d.enableTransitions();
+            ev.preventDefault();
+            return false;
+        };
+
+        // we don't want transitions while dragging...
+        pageAffine.disableTransitions();
+        page3d.disableTransitions();
+        $(document.body).on('mousemove touchmove MSPointerMove', mousemove)
+            .on('mouseup touchend MSPointerUp mouseleave', mouseup);
+        ev.preventDefault();
+        return false;
+    };
+
+    $(document.body).on('mousedown touchstart MSPointerDown', mousedown);
+    function getCoord(ev, $el) {
+        ev = ev.originalEvent || ev;
+        var offset = $el ? $el.offset() : { left: 0, top: 0 },
+            x = ev.touches && ev.touches[0].pageX ||
+                ev.pageX ||
+                ev.clientX + document.body.scrollLeft + document.documentElement.scrollLeft,
+            y = ev.touches && ev.touches[0].pageY ||
+                ev.pageY ||
+                ev.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        return {
+            x: x - offset.left,
+            y: y - offset.top
+        };
+    }
+</script>
+
+<style>
+.open {
+    background: url(open_in_new_window.png) 0 0 no-repeat;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    display: block;
+    top: 4px;
+    right: 4px;
+    opacity: 0.2;
+    z-index: 99999;
+}
+.open:hover {
+    opacity: 1;
+}
+</style>
+<a class="open" href="" target="_blank" style="display: none" title="Open demo in a new tab"></a>
+<script type="text/javascript"> if (window.self !== window.top) { $('.open').show(); }</script>
+</body>
+</html>
+
