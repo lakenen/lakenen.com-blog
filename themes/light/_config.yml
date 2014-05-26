@@ -1,10 +1,10 @@
 menu:
-  Home: /blog
-  About: /blog/about
-  Archives: /blog/archives
+  Home: /
+  About: /about
+  Projects: /projects
+  Archives: /archives
 
 widgets:
-- search
 - recent_posts
 - contact
 - tagcloud
@@ -17,7 +17,7 @@ twitter:
   tweet_count: 5
 
 addthis:
-  enable: true
+  enable: false
   pubid:
   facebook: true
   twitter: true

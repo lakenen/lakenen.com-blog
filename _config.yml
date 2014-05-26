@@ -12,8 +12,8 @@ language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://lakenen.com/blog
-root: /blog/
+url: http://lakenen.com/
+root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
 archive_dir: archives
@@ -71,7 +71,7 @@ pagination_dir: page
 # Disqus
 disqus_shortname: lakenen
 twitter_user: lakenen
-github_user: camupod
+github_user: lakenen
 stackoverflow_user_id: 494954
 
 # Extensions
